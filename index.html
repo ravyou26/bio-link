@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bio Link | Personal Linktree</title>
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome for Brand & Utility Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Modern CSS Reset & Design System Tokens */
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: rgba(17, 24, 39, 0.45);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-primary: #f3f4f6;
+            --text-secondary: #9ca3af;
+            --accent-primary: #8b5cf6;
+            --accent-secondary: #ec4899;
+            --glow-color: rgba(139, 92, 246, 0.15);
+
+            /* Social Brand Colors */
+            --color-saweria: #faae17;
+            --color-sociabuzz: #00c9a7;
+            --color-discord: #5865f2;
+            --color-instagram: #e1306c;
+            --color-youtube: #ff0000;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+            padding: 2.5rem 1rem;
+        }
+
+        /* Background Orbs (Ambient Light Glow Effect) */
+        body::before,
+        body::after {
+            content: '';
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            filter: blur(130px);
+            z-index: -1;
+            opacity: 0.35;
+            animation: floatGlow 12s ease-in-out infinite alternate;
+        }
+
+        body::before {
+            top: -50px;
+            left: -50px;
+        }
+
+        body::after {
+            bottom: -50px;
+            right: -50px;
+            animation-delay: -6s;
+        }
+
+        @keyframes floatGlow {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                transform: translate(50px, 50px) scale(1.2);
+            }
+        }
+
+        /* Main Container - High-end Glassmorphism */
+        .container {
+            width: 100%;
+            max-width: 480px;
+            background: var(--card-bg);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            border: 1px solid var(--card-border);
+            border-radius: 32px;
+            padding: 3rem 2.5rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            z-index: 1;
+            animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Profile Area with Animated Glowing Gradient Border */
+        .profile-wrapper {
+            position: relative;
+            width: 115px;
+            height: 115px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid transparent;
+            background-image: linear-gradient(var(--bg-color), var(--bg-color)),
+                linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+            padding: 5px;
+            box-shadow: 0 10px 25px rgba(139, 92, 246, 0.25);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .profile-wrapper:hover .profile-img {
+            transform: scale(1.08) rotate(5deg);
+        }
+
+        /* Verified Badge */
+        .verified-badge {
+            position: absolute;
+            bottom: 4px;
+            right: 4px;
+            background: linear-gradient(135deg, #3b82f6, #60a5fa);
+            color: #fff;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            border: 2px solid #0e1322;
+            box-shadow: 0 4px 10px rgba(59, 130, 246, 0.35);
+        }
+
+        /* Bio Information */
+        .profile-name {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.025em;
+            margin-bottom: 0.35rem;
+        }
+
+        .profile-username {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .profile-bio {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 2.2rem;
+            font-weight: 400;
+        }
+
+        /* Custom Social/Donation Buttons */
+        .links-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 1.1rem;
+        }
+
+        .link-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.15rem 1.6rem;
+            border-radius: 20px;
+            text-decoration: none;
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .link-btn-content {
+            display: flex;
+            align-items: center;
+            gap: 1.1rem;
+        }
+
+        .link-btn-content i {
+            font-size: 1.35rem;
+            width: 26px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .link-arrow {
+            opacity: 0.4;
+            font-size: 0.85rem;
+            transform: translateX(0);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* Hover States for Buttons with Brand Glows */
+        .link-btn:hover {
+            transform: translateY(-4px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .link-btn:hover .link-arrow {
+            opacity: 1;
+            transform: translate(3px, -3px);
+        }
+
+        .link-btn:hover .link-btn-content i {
+            transform: scale(1.15);
+        }
+
+        .link-btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* Custom Brand Color Hover Effects */
+        .btn-saweria:hover {
+            border-color: var(--color-saweria);
+            box-shadow: 0 8px 24px rgba(250, 174, 23, 0.2);
+            background: rgba(250, 174, 23, 0.02);
+        }
+
+        .btn-saweria i {
+            color: var(--color-saweria);
+        }
+
+        .btn-sociabuzz:hover {
+            border-color: var(--color-sociabuzz);
+            box-shadow: 0 8px 24px rgba(0, 201, 167, 0.2);
+            background: rgba(0, 201, 167, 0.02);
+        }
+
+        .btn-sociabuzz i {
+            color: var(--color-sociabuzz);
+        }
+
+        .btn-discord:hover {
+            border-color: var(--color-discord);
+            box-shadow: 0 8px 24px rgba(88, 101, 242, 0.2);
+            background: rgba(88, 101, 242, 0.02);
+        }
+
+        .btn-discord i {
+            color: var(--color-discord);
+        }
+
+        .btn-instagram:hover {
+            border-color: var(--color-instagram);
+            box-shadow: 0 8px 24px rgba(225, 48, 108, 0.2);
+            background: rgba(225, 48, 108, 0.02);
+        }
+
+        .btn-instagram i {
+            color: var(--color-instagram);
+        }
+
+        .btn-youtube:hover {
+            border-color: var(--color-youtube);
+            box-shadow: 0 8px 24px rgba(255, 0, 0, 0.2);
+            background: rgba(255, 0, 0, 0.02);
+        }
+
+        .btn-youtube i {
+            color: var(--color-youtube);
+        }
+
+        /* Premium Share Button */
+        .share-btn {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .share-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            transform: scale(1.08) rotate(15deg);
+        }
+
+        /* Footer Section */
+        .footer {
+            margin-top: 3rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            opacity: 0.65;
+            transition: opacity 0.25s ease;
+            z-index: 1;
+        }
+
+        .footer:hover {
+            opacity: 1;
+        }
+
+        .footer a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        .footer a:hover {
+            color: var(--accent-primary);
+            text-decoration: underline;
+        }
+
+        /* Elegant Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: rgba(255, 255, 255, 0.95);
+            color: #0b0f19;
+            padding: 0.9rem 1.6rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        /* Mobile View Optimization */
+        @media (max-width: 480px) {
+            body {
+                padding: 1.5rem 0.75rem;
+            }
+
+            .container {
+                padding: 2.5rem 1.5rem;
+                border-radius: 28px;
+            }
+
+            .profile-name {
+                font-size: 1.45rem;
+            }
+
+            .link-btn {
+                padding: 1rem 1.35rem;
+                font-size: 0.9rem;
+                border-radius: 16px;
+            }
+
+            .profile-wrapper {
+                width: 105px;
+                height: 105px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Main Container -->
+    <div class="container">
+
+        <!-- Share button -->
+        <button class="share-btn" onclick="copyProfileLink()" title="Bagikan Profil">
+            <i class="fa-regular fa-share-from-square"></i>
+        </button>
+
+        <!-- Profile Picture Wrapper -->
+        <div class="profile-wrapper">
+            <!-- Ganti URL src di bawah dengan link foto profil Anda sendiri -->
+            <img src="foto profil.jpeg" alt="Foto Profil" class="profile-img">
+            <div class="verified-badge" title="Akun Terverifikasi">
+                <i class="fa-solid fa-check"></i>
+            </div>
+        </div>
+
+        <!-- Name & Bio -->
+        <h1 class="profile-name">Ravyou</h1>
+        <span class="profile-username">@ravyou</span>
+
+        <p class="profile-bio">
+            Kreator Konten & Pengembang Web yang menyukai estetika minimalis dan teknologi modern. Selamat datang di
+            link hub resmi saya! Hubungi atau dukung saya melalui tombol di bawah. ✨
+        </p>
+
+        <!-- Social Links Stack -->
+        <div class="links-wrapper">
+
+            <!-- Saweria -->
+            <a href="https://saweria.co/ravyougaming" target="_blank" rel="noopener noreferrer"
+                class="link-btn btn-saweria">
+                <div class="link-btn-content">
+                    <i class="fa-solid fa-wallet"></i>
+                    <span>Dukung saya di Saweria</span>
+                </div>
+                <i class="fa-solid fa-arrow-up-right-from-square link-arrow"></i>
+            </a>
+
+            <!-- SociaBuzz -->
+            <a href="https://sociabuzz.com/ravyou" target="_blank" rel="noopener noreferrer"
+                class="link-btn btn-sociabuzz">
+                <div class="link-btn-content">
+                    <i class="fa-solid fa-heart"></i>
+                    <span>Trakteer di SociaBuzz</span>
+                </div>
+                <i class="fa-solid fa-arrow-up-right-from-square link-arrow"></i>
+            </a>
+
+            <!-- Discord -->
+            <a href="https://discord.com/invite/uWqVzK7YVq" target="_blank" rel="noopener noreferrer"
+                class="link-btn btn-discord">
+                <div class="link-btn-content">
+                    <i class="fa-brands fa-discord"></i>
+                    <span>Gabung Discord Server</span>
+                </div>
+                <i class="fa-solid fa-arrow-up-right-from-square link-arrow"></i>
+            </a>
+
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/adityaputra26_/" target="_blank" rel="noopener noreferrer"
+                class="link-btn btn-instagram">
+                <div class="link-btn-content">
+                    <i class="fa-brands fa-instagram"></i>
+                    <span>Ikuti saya di Instagram</span>
+                </div>
+                <i class="fa-solid fa-arrow-up-right-from-square link-arrow"></i>
+            </a>
+
+            <!-- YouTube -->
+            <a href="https://www.youtube.com/@ravyougaming" target="_blank" rel="noopener noreferrer"
+                class="link-btn btn-youtube">
+                <div class="link-btn-content">
+                    <i class="fa-brands fa-youtube"></i>
+                    <span>Subscribe YouTube Channel</span>
+                </div>
+                <i class="fa-solid fa-arrow-up-right-from-square link-arrow"></i>
+            </a>
+
+        </div>
+    </div>
+
+    <!-- Small Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 Ravyou. Powered by <a href="https://pages.github.com" target="_blank"
+                rel="noopener noreferrer">GitHub Pages</a></p>
+    </footer>
+
+    <!-- Toast Notification Element -->
+    <div id="toast" class="toast">
+        <i class="fa-solid fa-circle-check" style="color: #10b981;"></i>
+        <span>Link profil disalin ke papan klip!</span>
+    </div>
+
+    <!-- Simple JavaScript for Interactivity -->
+    <script>
+        function copyProfileLink() {
+            // Copy current page URL
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                const toast = document.getElementById('toast');
+                toast.classList.add('show');
+
+                // Hide toast after 3 seconds
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3000);
+            }).catch(err => {
+                console.error('Gagal menyalin link: ', err);
+            });
+        }
+    </script>
+</body>
+
+</html>
