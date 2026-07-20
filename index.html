@@ -515,37 +515,36 @@
                 <i class="fa-solid fa-arrow-up-right-from-square link-arrow"></i>
             </a>
         </div>
-    </div>
 
-    <!-- Small Footer -->
-    <footer class="footer">
-        <p>&copy; 2026 Ravyou. Powered by <a href="https://pages.github.com" target="_blank"
-                rel="noopener noreferrer">GitHub Pages</a></p>
-    </footer>
+        <!-- Small Footer -->
+        <footer class="footer">
+            <p>&copy; 2026 Ravyou. Powered by <a href="https://pages.github.com" target="_blank"
+                    rel="noopener noreferrer">GitHub Pages</a></p>
+        </footer>
 
-    <!-- Toast Notification Element -->
-    <div id="toast" class="toast">
-        <i class="fa-solid fa-circle-check" style="color: #10b981;"></i>
-        <span>Link profil disalin ke papan klip!</span>
-    </div>
+        <!-- Toast Notification Element -->
+        <div id="toast" class="toast">
+            <i class="fa-solid fa-circle-check" style="color: #10b981;"></i>
+            <span>Link profil disalin ke papan klip!</span>
+        </div>
 
-    <!-- Simple JavaScript for Interactivity -->
-    <script>
-        function copyProfileLink() {
-            // Copy current page URL
-            navigator.clipboard.writeText(window.location.href).then(() => {
-                const toast = document.getElementById('toast');
-                toast.classList.add('show');
+        <!-- Simple JavaScript for Interactivity -->
+        <script>
+            function copyProfileLink() {
+                // Copy current page URL
+                navigator.clipboard.writeText(window.location.href).then(() => {
+                    const toast = document.getElementById('toast');
+                    toast.classList.add('show');
 
-                // Hide toast after 3 seconds
-                setTimeout(() => {
-                    toast.classList.remove('show');
-                }, 3000);
-            }).catch(err => {
-                console.error('Gagal menyalin link: ', err);
-            });
-        }
-    </script>
+                    // Hide toast after 3 seconds
+                    setTimeout(() => {
+                        toast.classList.remove('show');
+                    }, 3000);
+                }).catch(err => {
+                    console.error('Gagal menyalin link: ', err);
+                });
+            }
+        </script>
 </body>
 
 </html>
